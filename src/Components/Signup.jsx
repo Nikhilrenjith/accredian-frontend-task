@@ -5,7 +5,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -36,29 +35,30 @@ export default function SignUp() {
       .min(8, "Password minimum length should be 8")
       .required("Required"),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Password not matched")
+      .oneOf([Yup.ref("password")], "Passwords do not match")
       .required("Required"),
+
     termsAndConditions: Yup.string().oneOf(
       ["true"],
-      "Please accept the sterms & conditions"
+      "Please accept the terms & conditions"
     ),
   });
+
   const onSubmit = (values, props) => {
     console.log(values);
-    console.log(props);
     setTimeout(() => {
       props.resetForm();
       alert("Account createds");
       props.setSubmitting(false);
-    }, 1000);
+    }, 500);
   };
+  const errorTextStyle = { color: "red", marginLeft: -1 };
   const paperStyle = { padding: 20, width: 500, margin: "0 auto" };
   return (
     <Paper style={paperStyle}>
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -87,7 +87,15 @@ export default function SignUp() {
                       id="firstName"
                       label="First Name"
                       autoFocus
-                      helperText={<ErrorMessage name="fname" />}
+                      helperText={
+                        <ErrorMessage name="fname">
+                          {(msg) => (
+                            <FormHelperText sx={errorTextStyle}>
+                              {msg}
+                            </FormHelperText>
+                          )}
+                        </ErrorMessage>
+                      }
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -98,7 +106,15 @@ export default function SignUp() {
                       label="Last Name"
                       name="lname"
                       autoComplete="family-name"
-                      helperText={<ErrorMessage name="lname" />}
+                      helperText={
+                        <ErrorMessage name="lname">
+                          {(msg) => (
+                            <FormHelperText sx={errorTextStyle}>
+                              {msg}
+                            </FormHelperText>
+                          )}
+                        </ErrorMessage>
+                      }
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -109,7 +125,15 @@ export default function SignUp() {
                       label="Email Address"
                       name="email"
                       autoComplete="email"
-                      helperText={<ErrorMessage name="email" />}
+                      helperText={
+                        <ErrorMessage name="email">
+                          {(msg) => (
+                            <FormHelperText sx={errorTextStyle}>
+                              {msg}
+                            </FormHelperText>
+                          )}
+                        </ErrorMessage>
+                      }
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -120,7 +144,15 @@ export default function SignUp() {
                       label="Phone Number"
                       id="number"
                       autoComplete="number"
-                      helperText={<ErrorMessage name="number" />}
+                      helperText={
+                        <ErrorMessage name="number">
+                          {(msg) => (
+                            <FormHelperText sx={errorTextStyle}>
+                              {msg}
+                            </FormHelperText>
+                          )}
+                        </ErrorMessage>
+                      }
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -132,7 +164,15 @@ export default function SignUp() {
                       type="password"
                       id="password"
                       autoComplete="new-password"
-                      helperText={<ErrorMessage name="password" />}
+                      helperText={
+                        <ErrorMessage name="password">
+                          {(msg) => (
+                            <FormHelperText sx={errorTextStyle}>
+                              {msg}
+                            </FormHelperText>
+                          )}
+                        </ErrorMessage>
+                      }
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -144,7 +184,15 @@ export default function SignUp() {
                       type="password"
                       id="confirmPassword"
                       autoComplete="confirm-password"
-                      helperText={<ErrorMessage name="confirmPasswod" />}
+                      helperText={
+                        <ErrorMessage name="confirmPassword">
+                          {(msg) => (
+                            <FormHelperText sx={errorTextStyle}>
+                              {msg}
+                            </FormHelperText>
+                          )}
+                        </ErrorMessage>
+                      }
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -158,7 +206,7 @@ export default function SignUp() {
                       }
                       label="I accept the terms and conditions."
                     />
-                    <FormHelperText>
+                    <FormHelperText sx={errorTextStyle}>
                       <ErrorMessage name="termsAndConditions" />
                     </FormHelperText>
                   </Grid>
