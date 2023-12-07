@@ -4,7 +4,7 @@ import Container from "./Components/Container";
 
 const App = () => {
   return (
-    <div>
+    <div style={{ backgroundColor: "#e0e0e0", padding: "20px" }}>
       <Container />
     </div>
   );

@@ -11,7 +11,8 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-export default function SignIn() {
+
+const Login = ({ handleChange }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -22,8 +23,8 @@ export default function SignIn() {
   };
   const paperStyle = {
     padding: 20,
-    height: "80vh",
-    width: 450,
+    height: "85vh",
+    width: 500,
     margin: "0 auto",
   };
   return (
@@ -65,6 +66,7 @@ export default function SignIn() {
             autoComplete="current-password"
           />
           <FormControlLabel
+            sx={{ mt: 2 }}
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
@@ -83,7 +85,11 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link
+                href="#"
+                variant="body2"
+                onClick={() => handleChange("event", 1)}
+              >
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
@@ -92,4 +98,5 @@ export default function SignIn() {
       </Box>
     </Paper>
   );
-}
+};
+export default Login;

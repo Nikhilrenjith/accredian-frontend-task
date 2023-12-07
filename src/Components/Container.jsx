@@ -13,7 +13,7 @@ const Container = () => {
     setValue(newValue);
   };
 
-  const Boxstyle = { width: 450, margin: "20px auto" };
+  const Boxstyle = { width: 500, margin: "20px auto" };
 
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -47,7 +47,7 @@ const Container = () => {
         <Tab sx={{ minWidth: "50%" }} label="Sign Up" />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Login />
+        <Login handleChange={handleChange} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <SignUp />
