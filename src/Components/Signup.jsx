@@ -66,7 +66,6 @@ export default function SignUp() {
         toast.success("Account created successfully");
         resetForm();
       } else {
-        // console.error("Account creation failed:", data.message);
         toast.warn("Email Already Exists");
       }
     } catch (error) {
