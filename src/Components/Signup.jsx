@@ -77,7 +77,12 @@ export default function SignUp() {
     console.log(values);
   };
   const errorTextStyle = { color: "red", marginLeft: -1 };
-  const paperStyle = { padding: 20, width: 500, margin: "0 auto" };
+  const paperStyle = {
+    padding: 20,
+    width: 500,
+    margin: "0 auto",
+    height: "90vh",
+  };
   return (
     <Paper style={paperStyle}>
       <CssBaseline />
