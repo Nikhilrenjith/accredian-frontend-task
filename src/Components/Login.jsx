@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -19,6 +19,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Login = ({ handleChange }) => {
   const errorTextStyle = { color: "red", marginLeft: -1 };
+  const [showPassword, setShowPassword] = React.useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -30,7 +32,6 @@ const Login = ({ handleChange }) => {
   const initialValues = {
     email: "",
     password: "",
-    save: false,
   };
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Please enter valid email").required("Required"),
@@ -58,7 +59,6 @@ const Login = ({ handleChange }) => {
       const data = await response.json();
 
       if (data.success) {
-        // Store the token in local storage for future authenticated requests
         localStorage.setItem("token", data.token);
         console.log("Login successful");
         toast.success("Login successful");
@@ -136,7 +136,7 @@ const Login = ({ handleChange }) => {
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   autoComplete="current-password"
                   helperText={
@@ -151,10 +151,15 @@ const Login = ({ handleChange }) => {
                 />
                 <Field
                   as={FormControlLabel}
-                  name="save"
+                  name="showPassword"
                   sx={{ mt: 2 }}
-                  control={<Checkbox color="primary" />}
-                  label="Remember me"
+                  control={
+                    <Checkbox
+                      color="primary"
+                      onChange={() => setShowPassword(!showPassword)}
+                    />
+                  }
+                  label="Show Password"
                 />
                 <Button
                   type="submit"
