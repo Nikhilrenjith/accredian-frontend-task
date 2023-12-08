@@ -13,6 +13,8 @@ import Paper from "@mui/material/Paper";
 import { FormHelperText } from "@mui/material";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SignUp() {
   const initialValues = {
@@ -61,12 +63,14 @@ export default function SignUp() {
 
       if (data.success) {
         console.log("Account created successfully");
+        toast.success("Account created successfully");
         resetForm();
       } else {
         console.error("Account creation failed:", data.message);
       }
     } catch (error) {
       console.error("Error during account creation:", error);
+      toast.error("Account created successfully");
     } finally {
       setSubmitting(false);
     }
@@ -91,6 +95,19 @@ export default function SignUp() {
           Sign up
         </Typography>
         <Box sx={{ mt: 3 }}>
+          <ToastContainer
+            position="top-center"
+            autoClose={2000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
+
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}

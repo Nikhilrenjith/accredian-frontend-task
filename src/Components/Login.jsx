@@ -64,6 +64,7 @@ const Login = ({ handleChange }) => {
         toast.success("Login successful");
       } else {
         console.error("Login failed:", data.message);
+        toast.error("Invalid Credentials");
       }
     } catch (error) {
       console.error("Error during login:", error);
@@ -90,15 +91,16 @@ const Login = ({ handleChange }) => {
           Sign in
         </Typography>
         <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar
           newestOnTop={false}
           closeOnClick
           rtl={false}
           pauseOnFocusLoss
           draggable
           pauseOnHover
+          theme="colored"
         />
 
         <Box sx={{ mt: 1 }}>
