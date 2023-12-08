@@ -11,6 +11,7 @@ const App = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         padding: "20px",
+        height: "90vh",
       }}
     >
       <Container />
