@@ -81,6 +81,7 @@ export default function SignUp() {
     padding: 20,
     width: 500,
     margin: "0 auto",
+    height: "80vh",
   };
   return (
     <Paper style={paperStyle}>
@@ -98,7 +99,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Box sx={{ mt: 3, height: "80vh" }}>
+        <Box sx={{ mt: 3 }}>
           <ToastContainer
             position="top-center"
             autoClose={2000}
