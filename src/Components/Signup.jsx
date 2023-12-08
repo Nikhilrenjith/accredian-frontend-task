@@ -44,13 +44,30 @@ export default function SignUp() {
     ),
   });
 
-  const onSubmit = (values, props) => {
+  const onSubmit = async (values, { setSubmitting, resetForm }) => {
+    try {
+      const response = await fetch("http://localhost:5000/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        console.log("Account created successfully");
+        resetForm();
+      } else {
+        console.error("Account creation failed:", data.message);
+      }
+    } catch (error) {
+      console.error("Error during account creation:", error);
+    } finally {
+      setSubmitting(false);
+    }
     console.log(values);
-    setTimeout(() => {
-      props.resetForm();
-      alert("Account createds");
-      props.setSubmitting(false);
-    }, 500);
   };
   const errorTextStyle = { color: "red", marginLeft: -1 };
   const paperStyle = { padding: 20, width: 500, margin: "0 auto" };

@@ -14,6 +14,8 @@ import Paper from "@mui/material/Paper";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FormHelperText } from "@mui/material";
 import * as Yup from "yup";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = ({ handleChange }) => {
   const errorTextStyle = { color: "red", marginLeft: -1 };
@@ -40,12 +42,32 @@ const Login = ({ handleChange }) => {
     width: 500,
     margin: "0 auto",
   };
-  const onSubmit = (values, props) => {
-    console.log(values);
-    setTimeout(() => {
+  const onSubmit = async (values, props) => {
+    try {
+      const response = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Store the token in local storage for future authenticated requests
+        localStorage.setItem("token", data.token);
+        console.log("Login successful");
+        toast.success("Login successful");
+      } else {
+        console.error("Login failed:", data.message);
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+    } finally {
       props.resetForm();
       props.setSubmitting(false);
-    }, 1000);
+    }
   };
   return (
     <Paper style={paperStyle}>
@@ -64,6 +86,18 @@ const Login = ({ handleChange }) => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+
         <Box sx={{ mt: 1 }}>
           <Formik
             initialValues={initialValues}
