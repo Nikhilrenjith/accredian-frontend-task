@@ -16,12 +16,12 @@ import { FormHelperText } from "@mui/material";
 import * as Yup from "yup";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Login = ({ handleChange }) => {
   const errorTextStyle = { color: "red", marginLeft: -1 };
   const [showPassword, setShowPassword] = React.useState(false);
-  const navigate = useNavigate();
+  const history = useHistory();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -61,8 +61,8 @@ const Login = ({ handleChange }) => {
 
       if (data.success) {
         localStorage.setItem("token", data.token);
-        navigate("/home");
         toast.success("Login successful");
+        history.push("/landing");
       } else {
         console.error("Login failed:", data.message);
         toast.error("Invalid Credentials");

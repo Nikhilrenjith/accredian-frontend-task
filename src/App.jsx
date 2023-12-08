@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Container from "./Components/Container";
 import LandingPage from "./Components/LandingPage";
 
@@ -7,26 +6,9 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Container />} />
-        <Route path="/home" element={<LandingPage />} />
+        <Route path="/" exact component={Container} />
+        <Route path="/landing" component={LandingPage} />
       </Routes>
-
-      <div
-        style={{
-          backgroundImage: `url(
-            "https://images.unsplash.com/photo-1540800458874-73e6a5eed8ac?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          )`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          padding: "20px",
-          height: "100vh",
-        }}
-      >
-        <Routes>
-          <Route path="/" element={<Container />} />
-          <Route path="/home" element={<LandingPage />} />
-        </Routes>
-      </div>
     </Router>
   );
 };

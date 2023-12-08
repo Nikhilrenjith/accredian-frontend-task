@@ -35,24 +35,36 @@ const Container = () => {
     );
   }
   return (
-    <Paper style={Boxstyle} elevation={20}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        aria-label="disabled tabs example"
-        textColor="secondary"
-        indicatorColor="secondary"
-      >
-        <Tab sx={{ minWidth: "50%" }} label="Sign In" />
-        <Tab sx={{ minWidth: "50%" }} label="Sign Up" />
-      </Tabs>
-      <TabPanel value={value} index={0}>
-        <Login handleChange={handleChange} />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <SignUp />
-      </TabPanel>
-    </Paper>
+    <div
+      style={{
+        backgroundImage: `url(
+          "https://images.unsplash.com/photo-1540800458874-73e6a5eed8ac?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        )`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        padding: "20px",
+        height: "100vh",
+      }}
+    >
+      <Paper style={Boxstyle} elevation={20}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="disabled tabs example"
+          textColor="secondary"
+          indicatorColor="secondary"
+        >
+          <Tab sx={{ minWidth: "50%" }} label="Sign In" />
+          <Tab sx={{ minWidth: "50%" }} label="Sign Up" />
+        </Tabs>
+        <TabPanel value={value} index={0}>
+          <Login handleChange={handleChange} />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <SignUp />
+        </TabPanel>
+      </Paper>
+    </div>
   );
 };
 
