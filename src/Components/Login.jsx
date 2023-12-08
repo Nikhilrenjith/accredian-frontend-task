@@ -39,7 +39,7 @@ const Login = ({ handleChange }) => {
   });
   const paperStyle = {
     padding: 20,
-    height: "80vh",
+    height: "70vh",
     width: 500,
     margin: "0 auto",
   };
