@@ -48,6 +48,7 @@ export default function SignUp() {
 
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
+      /* deploying link */
       const response = await fetch(
         "https://accredian-backend-task-gules.vercel.app/api/signup",
         {
@@ -111,7 +112,6 @@ export default function SignUp() {
             pauseOnHover
             theme="colored"
           />
-
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
