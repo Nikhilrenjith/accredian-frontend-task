@@ -81,7 +81,6 @@ export default function SignUp() {
     padding: 20,
     width: 500,
     margin: "0 auto",
-    height: "100vh",
   };
   return (
     <Paper style={paperStyle}>
