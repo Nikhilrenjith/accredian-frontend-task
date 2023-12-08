@@ -10,7 +10,7 @@ const App = () => {
         )`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        filter: "blur(8px)",
+
         padding: "20px",
       }}
     >
