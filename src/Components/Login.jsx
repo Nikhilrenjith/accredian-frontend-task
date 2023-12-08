@@ -61,7 +61,7 @@ const Login = ({ handleChange }) => {
 
       if (data.success) {
         localStorage.setItem("token", data.token);
-        navigate("./home");
+        navigate("/home");
         toast.success("Login successful");
       } else {
         console.error("Login failed:", data.message);
